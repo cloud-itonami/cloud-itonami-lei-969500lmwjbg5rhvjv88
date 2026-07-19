@@ -1,10 +1,11 @@
 NOTICE
 
-The Terms and Conditions of Use text archived under 80-data/public/tos.journal.edn in
-this repository was authored and published by Transdev Group SA and remains that
-company's copyright. It is included here for reference/analysis purposes only, with
-source-url and retrieved-at provenance recorded alongside each entry, and is not
-asserted as this project's own work.
+The two documents archived under 80-data/public/tos.journal.edn in this repository
+(a website Terms and Conditions of Use published on transdev.com, and a Conditions
+of Carriage published on transdevtravel.com, both Transdev group entities) remain
+that company's/group's copyright. They are included here for reference/analysis
+purposes only, with source-url and retrieved-at provenance recorded alongside each
+entry, and are not asserted as this project's own work.
 
 This repository's own structure (README, blueprint.edn, journal schema, tooling) is
 licensed AGPL-3.0-or-later per LICENSE. That license does NOT extend to the archived

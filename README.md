@@ -2,8 +2,11 @@
 
 > **Independent third-party archive/analysis. Not affiliated with, endorsed by, or sponsored by Transdev Group SA.**
 
-This repository archives the publicly published Terms and Conditions of Use of
-**Transdev Group SA**, with source-url and retrieval-date provenance, per
+This repository archives two publicly published documents: **Transdev Group
+SA**'s website Terms and Conditions of Use, and — the actual document that
+governs riding the coach, not just browsing the website — **Transdev Travel's
+real Conditions of Carriage** (a Transdev group coach-travel subsidiary). Both
+carry source-url and retrieval-date provenance, per
 [ADR-2607110300](https://github.com/com-junkawasaki/root/blob/main/90-docs/adr/2607110300-cloud-itonami-lei-corporate-tos-catalog.edn)
 (`cloud-itonami-lei-corporate-tos-catalog`, `com-junkawasaki/root`). It is a read-only
 reference/archive repository — it does not act, propose, or execute anything on the
@@ -19,7 +22,7 @@ company's behalf, and is not a governed Advisor/Governor actor.
 
 ## Contents
 
-- `80-data/public/tos.journal.edn` — EDN quad-log of archived Terms and Conditions of Use documents.
+- `80-data/public/tos.journal.edn` — EDN quad-log of both archived documents (website Terms and Conditions of Use + the real Conditions of Carriage).
 - `NOTICE` — copyright/attribution statement for the archived third-party text.
 - `blueprint.edn` — machine-readable company identity record.
 
