@@ -9,12 +9,16 @@
 ;; (d/transact conn (edn/read-string (slurp "facts.edn"))) like every other EDN
 ;; corpus in this workspace. :company/lei is the join key.
 ;;
-;; Both consolidation levels are always represented, in one of two ways: a
-;; :direct-parent / :ultimate-parent entity naming the parent, or a
-;; :parent-reporting-exception entity saying why there is none. GLEIF publishes
-;; exactly one of the pair per level and 404s the other, and the generator fails
-;; rather than write this file if that stops being true -- so a level missing
-;; from here was never a level nobody asked about.
+;; Both consolidation levels are always represented, in one of three ways: a
+;; :direct-parent / :ultimate-parent entity naming the parent, a
+;; :parent-reporting-exception entity saying why there is none, or a
+;; :parent-reporting-absent entity recording that GLEIF's record carries no
+;; consolidation reporting at that level at all (its own relationships object
+;; declares no such link, and both endpoints answer 404). When the record does
+;; declare a level's link, GLEIF publishes exactly one of the pair and 404s the
+;; other, and the generator fails rather than write this file if that stops
+;; being true -- so a level missing from here was never a level nobody asked
+;; about.
 ;;
 ;; The two counts here -- :securities/isin-count and
 ;; :relationship/direct-child-count -- are read from meta.pagination.total of a
@@ -44,17 +48,17 @@
   :company/open-corporates-id "fr/521477851"
   :company/sp-global-id ["654359494"]
   :registration/initial-date "2013-10-21T22:00:00Z"
-  :registration/last-update-date "2026-07-31T20:12:06Z"
+  :registration/last-update-date "2026-08-24T20:13:50Z"
   :registration/status "ISSUED"
-  :registration/next-renewal-date "2026-09-10T09:16:26Z"
+  :registration/next-renewal-date "2027-09-10T09:16:26Z"
   :registration/managing-lou-lei "969500Q2MA9VBQ8BG884"
   :registration/corroboration-level "FULLY_CORROBORATED"
   :registration/conformity-flag "CONFORMING"
   :source/dataset "cloud-itonami-lei-facts"
   :source/url "https://api.gleif.org/api/v1/lei-records/969500LMWJBG5RHVJV88"
   :source/http-status 200
-  :source/retrieved-at "2026-08-25T06:05:24.573Z"
-  :source/golden-copy-publish-date "2026-08-24T16:00:00Z"
+  :source/retrieved-at "2026-08-26T14:56:14.333Z"
+  :source/golden-copy-publish-date "2026-08-26T00:00:00Z"
   :source/note "Entity status and registration status are two different fields and are recorded separately: an ACTIVE company can hold a LAPSED LEI registration."}
 
  {:fact/id "gleif-isins"
@@ -66,8 +70,8 @@
   :source/dataset "cloud-itonami-lei-facts"
   :source/url "https://api.gleif.org/api/v1/lei-records/969500LMWJBG5RHVJV88/isins"
   :source/http-status 200
-  :source/retrieved-at "2026-08-25T06:05:24.573Z"
-  :source/golden-copy-publish-date "2026-08-24T16:00:00Z"
+  :source/retrieved-at "2026-08-26T14:56:14.333Z"
+  :source/golden-copy-publish-date "2026-08-26T00:00:00Z"
   :source/note "Count of instrument identifiers GLEIF maps to this LEI, read from meta.pagination.total of the cited page. The whole list fits in that single page, so each identifier is also recorded below as its own :fact/kind :security entity. This is a count, not a share count."}
 
  {:fact/id "gleif-managing-lou"
@@ -79,8 +83,8 @@
   :source/dataset "cloud-itonami-lei-facts"
   :source/url "https://api.gleif.org/api/v1/lei-records/969500LMWJBG5RHVJV88/managing-lou"
   :source/http-status 200
-  :source/retrieved-at "2026-08-25T06:05:24.573Z"
-  :source/golden-copy-publish-date "2026-08-24T16:00:00Z"
+  :source/retrieved-at "2026-08-26T14:56:14.333Z"
+  :source/golden-copy-publish-date "2026-08-26T00:00:00Z"
   :source/note "The Local Operating Unit that issues and maintains this LEI."}
 
  {:fact/id "gleif-lei-issuer-accreditation"
@@ -94,8 +98,8 @@
   :source/dataset "cloud-itonami-lei-facts"
   :source/url "https://api.gleif.org/api/v1/lei-records/969500LMWJBG5RHVJV88/lei-issuer"
   :source/http-status 200
-  :source/retrieved-at "2026-08-25T06:05:24.573Z"
-  :source/golden-copy-publish-date "2026-08-24T16:00:00Z"
+  :source/retrieved-at "2026-08-26T14:56:14.333Z"
+  :source/golden-copy-publish-date "2026-08-26T00:00:00Z"
   :source/note "GLEIF's accreditation of the LOU named above, as an issuer of LEIs."}
 
  {:fact/id "gleif-registration-authority"
@@ -114,7 +118,7 @@
   :source/dataset "cloud-itonami-lei-facts"
   :source/url "https://api.gleif.org/api/v1/registration-authorities/RA000189"
   :source/http-status 200
-  :source/retrieved-at "2026-08-25T06:05:24.573Z"
+  :source/retrieved-at "2026-08-26T14:56:14.333Z"
   :source/note "Resolves :company/registration-authority-id to the national register that corroborated the record. GLEIF lists this register under 12 jurisdictions (FR, GF, PF, GP, MQ, YT, NC, RE, BL, MF, PM, WF), all recorded here in GLEIF's order; which one this entity belongs to is :company/jurisdiction on the LEI record, not a position in this list."}
 
  {:fact/id "iso-20275-entity-legal-form"
@@ -130,7 +134,7 @@
   :source/dataset "cloud-itonami-lei-facts"
   :source/url "https://api.gleif.org/api/v1/entity-legal-forms/K65D"
   :source/http-status 200
-  :source/retrieved-at "2026-08-25T06:05:24.573Z"
+  :source/retrieved-at "2026-08-26T14:56:14.333Z"
   :source/note "Resolves :company/entity-legal-form-id under ISO 20275."}
 
  {:fact/id "gleif-direct-parent"
@@ -145,8 +149,8 @@
   :source/dataset "cloud-itonami-lei-facts"
   :source/url "https://api.gleif.org/api/v1/lei-records/969500LMWJBG5RHVJV88/direct-parent"
   :source/http-status 200
-  :source/retrieved-at "2026-08-25T06:05:24.573Z"
-  :source/golden-copy-publish-date "2026-08-24T16:00:00Z"
+  :source/retrieved-at "2026-08-26T14:56:14.333Z"
+  :source/golden-copy-publish-date "2026-08-26T00:00:00Z"
   :source/note "The entity GLEIF records as the direct consolidating parent of 969500LMWJBG5RHVJV88. Its own record, including any parent above it, is at the cited URL."}
 
  {:fact/id "gleif-ultimate-parent"
@@ -161,8 +165,8 @@
   :source/dataset "cloud-itonami-lei-facts"
   :source/url "https://api.gleif.org/api/v1/lei-records/969500LMWJBG5RHVJV88/ultimate-parent"
   :source/http-status 200
-  :source/retrieved-at "2026-08-25T06:05:24.573Z"
-  :source/golden-copy-publish-date "2026-08-24T16:00:00Z"
+  :source/retrieved-at "2026-08-26T14:56:14.333Z"
+  :source/golden-copy-publish-date "2026-08-26T00:00:00Z"
   :source/note "The entity GLEIF records as the ultimate consolidating parent of 969500LMWJBG5RHVJV88. Its own record, including any parent above it, is at the cited URL."}
 
  {:fact/id "gleif-direct-children-count"
@@ -172,30 +176,19 @@
   :source/dataset "cloud-itonami-lei-facts"
   :source/url "https://api.gleif.org/api/v1/lei-records/969500LMWJBG5RHVJV88/direct-children?page%5Bnumber%5D=1&page%5Bsize%5D=15"
   :source/http-status 200
-  :source/retrieved-at "2026-08-25T06:05:24.573Z"
-  :source/golden-copy-publish-date "2026-08-24T16:00:00Z"
+  :source/retrieved-at "2026-08-26T14:56:14.333Z"
+  :source/golden-copy-publish-date "2026-08-26T00:00:00Z"
   :source/note "How many entities GLEIF records as directly consolidated by this one, read from meta.pagination.total. Zero here is a measured zero, not an unasked question. Each child, if any, is recorded as its own :fact/kind :direct-child entity below."}
 
- {:fact/id "gleif-isin-fr001400zpd8"
+ {:fact/id "gleif-isin-fr0010893099"
   :fact/kind :security
   :company/lei "969500LMWJBG5RHVJV88"
-  :securities/isin "FR001400ZPD8"
+  :securities/isin "FR0010893099"
   :source/dataset "cloud-itonami-lei-facts"
   :source/url "https://api.gleif.org/api/v1/lei-records/969500LMWJBG5RHVJV88/isins"
   :source/http-status 200
-  :source/retrieved-at "2026-08-25T06:05:24.573Z"
-  :source/golden-copy-publish-date "2026-08-24T16:00:00Z"
-  :source/note "An instrument identifier GLEIF maps to this LEI."}
-
- {:fact/id "gleif-isin-fr001400zpc0"
-  :fact/kind :security
-  :company/lei "969500LMWJBG5RHVJV88"
-  :securities/isin "FR001400ZPC0"
-  :source/dataset "cloud-itonami-lei-facts"
-  :source/url "https://api.gleif.org/api/v1/lei-records/969500LMWJBG5RHVJV88/isins"
-  :source/http-status 200
-  :source/retrieved-at "2026-08-25T06:05:24.573Z"
-  :source/golden-copy-publish-date "2026-08-24T16:00:00Z"
+  :source/retrieved-at "2026-08-26T14:56:14.333Z"
+  :source/golden-copy-publish-date "2026-08-26T00:00:00Z"
   :source/note "An instrument identifier GLEIF maps to this LEI."}
 
  {:fact/id "gleif-isin-fr0013459922"
@@ -205,8 +198,30 @@
   :source/dataset "cloud-itonami-lei-facts"
   :source/url "https://api.gleif.org/api/v1/lei-records/969500LMWJBG5RHVJV88/isins"
   :source/http-status 200
-  :source/retrieved-at "2026-08-25T06:05:24.573Z"
-  :source/golden-copy-publish-date "2026-08-24T16:00:00Z"
+  :source/retrieved-at "2026-08-26T14:56:14.333Z"
+  :source/golden-copy-publish-date "2026-08-26T00:00:00Z"
+  :source/note "An instrument identifier GLEIF maps to this LEI."}
+
+ {:fact/id "gleif-isin-fr001400zpc0"
+  :fact/kind :security
+  :company/lei "969500LMWJBG5RHVJV88"
+  :securities/isin "FR001400ZPC0"
+  :source/dataset "cloud-itonami-lei-facts"
+  :source/url "https://api.gleif.org/api/v1/lei-records/969500LMWJBG5RHVJV88/isins"
+  :source/http-status 200
+  :source/retrieved-at "2026-08-26T14:56:14.333Z"
+  :source/golden-copy-publish-date "2026-08-26T00:00:00Z"
+  :source/note "An instrument identifier GLEIF maps to this LEI."}
+
+ {:fact/id "gleif-isin-fr001400zpd8"
+  :fact/kind :security
+  :company/lei "969500LMWJBG5RHVJV88"
+  :securities/isin "FR001400ZPD8"
+  :source/dataset "cloud-itonami-lei-facts"
+  :source/url "https://api.gleif.org/api/v1/lei-records/969500LMWJBG5RHVJV88/isins"
+  :source/http-status 200
+  :source/retrieved-at "2026-08-26T14:56:14.333Z"
+  :source/golden-copy-publish-date "2026-08-26T00:00:00Z"
   :source/note "An instrument identifier GLEIF maps to this LEI."}
 
  {:fact/id "gleif-isin-fr0013353653"
@@ -216,19 +231,8 @@
   :source/dataset "cloud-itonami-lei-facts"
   :source/url "https://api.gleif.org/api/v1/lei-records/969500LMWJBG5RHVJV88/isins"
   :source/http-status 200
-  :source/retrieved-at "2026-08-25T06:05:24.573Z"
-  :source/golden-copy-publish-date "2026-08-24T16:00:00Z"
-  :source/note "An instrument identifier GLEIF maps to this LEI."}
-
- {:fact/id "gleif-isin-fr0010893099"
-  :fact/kind :security
-  :company/lei "969500LMWJBG5RHVJV88"
-  :securities/isin "FR0010893099"
-  :source/dataset "cloud-itonami-lei-facts"
-  :source/url "https://api.gleif.org/api/v1/lei-records/969500LMWJBG5RHVJV88/isins"
-  :source/http-status 200
-  :source/retrieved-at "2026-08-25T06:05:24.573Z"
-  :source/golden-copy-publish-date "2026-08-24T16:00:00Z"
+  :source/retrieved-at "2026-08-26T14:56:14.333Z"
+  :source/golden-copy-publish-date "2026-08-26T00:00:00Z"
   :source/note "An instrument identifier GLEIF maps to this LEI."}
 
  {:fact/id "gleif-direct-child-097900caka0000090961"
@@ -242,8 +246,8 @@
   :source/dataset "cloud-itonami-lei-facts"
   :source/url "https://api.gleif.org/api/v1/lei-records/969500LMWJBG5RHVJV88/direct-children?page%5Bnumber%5D=1&page%5Bsize%5D=15"
   :source/http-status 200
-  :source/retrieved-at "2026-08-25T06:05:24.573Z"
-  :source/golden-copy-publish-date "2026-08-24T16:00:00Z"}
+  :source/retrieved-at "2026-08-26T14:56:14.333Z"
+  :source/golden-copy-publish-date "2026-08-26T00:00:00Z"}
 
  {:fact/id "gleif-direct-child-315700ufd9l487c1am50"
   :fact/kind :direct-child
@@ -256,8 +260,8 @@
   :source/dataset "cloud-itonami-lei-facts"
   :source/url "https://api.gleif.org/api/v1/lei-records/969500LMWJBG5RHVJV88/direct-children?page%5Bnumber%5D=1&page%5Bsize%5D=15"
   :source/http-status 200
-  :source/retrieved-at "2026-08-25T06:05:24.573Z"
-  :source/golden-copy-publish-date "2026-08-24T16:00:00Z"}
+  :source/retrieved-at "2026-08-26T14:56:14.333Z"
+  :source/golden-copy-publish-date "2026-08-26T00:00:00Z"}
 
  {:fact/id "gleif-direct-child-097900bihd0000162673"
   :fact/kind :direct-child
@@ -270,8 +274,8 @@
   :source/dataset "cloud-itonami-lei-facts"
   :source/url "https://api.gleif.org/api/v1/lei-records/969500LMWJBG5RHVJV88/direct-children?page%5Bnumber%5D=1&page%5Bsize%5D=15"
   :source/http-status 200
-  :source/retrieved-at "2026-08-25T06:05:24.573Z"
-  :source/golden-copy-publish-date "2026-08-24T16:00:00Z"}
+  :source/retrieved-at "2026-08-26T14:56:14.333Z"
+  :source/golden-copy-publish-date "2026-08-26T00:00:00Z"}
 
  {:fact/id "gleif-direct-child-724500be4b0bmhshkg79"
   :fact/kind :direct-child
@@ -284,5 +288,5 @@
   :source/dataset "cloud-itonami-lei-facts"
   :source/url "https://api.gleif.org/api/v1/lei-records/969500LMWJBG5RHVJV88/direct-children?page%5Bnumber%5D=1&page%5Bsize%5D=15"
   :source/http-status 200
-  :source/retrieved-at "2026-08-25T06:05:24.573Z"
-  :source/golden-copy-publish-date "2026-08-24T16:00:00Z"}]
+  :source/retrieved-at "2026-08-26T14:56:14.333Z"
+  :source/golden-copy-publish-date "2026-08-26T00:00:00Z"}]
