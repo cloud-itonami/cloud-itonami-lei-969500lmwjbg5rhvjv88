@@ -25,6 +25,25 @@ company's behalf, and is not a governed Advisor/Governor actor.
 - `80-data/public/tos.journal.edn` — EDN quad-log of both archived documents (website Terms and Conditions of Use + the real Conditions of Carriage).
 - `NOTICE` — copyright/attribution statement for the archived third-party text.
 - `blueprint.edn` — machine-readable company identity record.
+- `facts.edn` — public-registry facts (GLEIF), each carrying the URL it was read
+  from and the time it was read. Generated, not hand-written.
+- `scripts/verify-facts.cljs` — re-fetches every source `facts.edn` cites and
+  fails if the live registry no longer agrees.
+
+### Checking this archive
+
+`facts.edn` says it can be re-checked against the live registry. That claim is
+only worth something if the checker ships with it, so it does — a bare clone is
+enough, with no workspace and no dependency resolution:
+
+```bash
+nbb scripts/verify-facts.cljs
+```
+
+Three exit codes, because a check that could not run must not look like a check
+that ran and found nothing: `0` every cited source still agrees, `1` a recorded
+fact drifted or a citation broke, `3` the check could not be performed (network
+down, register empty or unreadable) and is refusing to report a pass.
 
 ## Related cloud-itonami blueprint (passenger-road-transport vertical)
 
