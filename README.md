@@ -37,7 +37,7 @@ only worth something if the checker ships with it, so it does — a bare clone i
 enough, with no workspace and no dependency resolution:
 
 ```bash
-nbb scripts/verify-facts.cljk
+kbb --backend sci scripts/verify-facts.cljk
 ```
 
 Three exit codes, because a check that could not run must not look like a check
