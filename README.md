@@ -27,7 +27,7 @@ company's behalf, and is not a governed Advisor/Governor actor.
 - `blueprint.edn` — machine-readable company identity record.
 - `facts.edn` — public-registry facts (GLEIF), each carrying the URL it was read
   from and the time it was read. Generated, not hand-written.
-- `scripts/verify-facts.cljs` — re-fetches every source `facts.edn` cites and
+- `scripts/verify-facts.cljk` — re-fetches every source `facts.edn` cites and
   fails if the live registry no longer agrees.
 
 ### Checking this archive
@@ -37,7 +37,7 @@ only worth something if the checker ships with it, so it does — a bare clone i
 enough, with no workspace and no dependency resolution:
 
 ```bash
-nbb scripts/verify-facts.cljs
+nbb scripts/verify-facts.cljk
 ```
 
 Three exit codes, because a check that could not run must not look like a check
